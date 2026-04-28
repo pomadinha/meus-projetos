@@ -19,3 +19,38 @@ void cadAlunos(Aluno alunos[], int *qtd);
 void gerencNotas(Aluno alunos[], int qtd);
 void buscarAluno(Aluno alunos[], int qtd);
 
+void cadAlunos(Aluno alunos[], int *qtd){
+  for(*qtd >= QTD_ALUNOS){
+    printf("ERRO! CAPACIDADE MÁXIMA DE ALUNOS ATINGIDA!\n")
+      return;
+  }
+
+  printf("--- CADASTRO ALUNO ---\n");
+  prtinf("Matrícula: ");
+  scanf("%d", &alunos[*qtd].matricula);
+  limparBuffer();
+
+  printf("Nome: ");
+  fgets(alunos[*qtd].nome, 50, stdin);
+  alunos[*qtd].nome[strcspn(alunos[*qtd].nome,"\n")] = 0;
+
+  printf("Turma: ");
+  fgets(alunos[*qtd].turma, 20, stdin);
+  alunos[*qtd].turma[strcspn(alunos[*qtd].turma,"\n")] = 0;
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}
+
