@@ -4,7 +4,7 @@
 
 #define QTD_NOTAS 3
 #define QTD_ALUNOS 30
-#define MEDIA_FINAL 7.0
+#define MEDIA_AP 7.0
 
 typedef struct{
   int matricula; 
@@ -65,17 +65,25 @@ void gerencNotas(Aluno alunos[], int qtd){
     }
   }
 
-  if (indice == 1){
+  if (indice == - 1){
     printf("Aluno não encontrado.\n");
     return;
   }
 
+  float soma = 0;
+  printf("Lançamento de notas para: %s\n", alunos[indice].nome);
+  for(int i = 0; i < QTD_NOTAS; i++){
+    printf("Nota %d: ", i+1);
+    scanf("%f", &alunos[indice].notas[i]);
+    soma += alunos[indice].notas[i];
+  }
 
-
-
-
-
-
-
+  alunos[indice].media = soma/QTD_NOTAS;
+  if(alunos[indice].media >= MEDIA_AP){
+    strcpy(alunos[indice].situacao, "Aprovado.\n");
+  }else{
+    strcpy(alunos[indice].situacao, "Reprovado.\n");
+  }
+  printf("Notas atualizadas, a média é: %.2f(%s)\n", alunos[indice].media, alunos[indice].situacao);
 }
 
