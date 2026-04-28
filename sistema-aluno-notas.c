@@ -15,7 +15,7 @@ typedef struct{
   float media;
 }Aluno;
 
-void cadAlunos();
-void gerencNotas();
-void buscarAluno();
+void cadAlunos(Aluno alunos[], int *qtd);
+void gerencNotas(Aluno alunos[], int qtd);
+void buscarAluno(Aluno alunos[], int qtd);
 
