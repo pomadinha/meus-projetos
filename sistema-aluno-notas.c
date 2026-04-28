@@ -16,8 +16,8 @@ typedef struct{
 }Aluno;
 
 void cadAlunos(Aluno alunos[], int *qtd);
-void gerencNotas(Aluno alunos[], int qtd);
-void buscarAluno(Aluno alunos[], int qtd);
+void gerencNotas(Aluno alunos[], int qtd); //ainda falta 
+void buscarAluno(Aluno alunos[], int qtd); //ainda falta
 
 void cadAlunos(Aluno alunos[], int *qtd){
   for(*qtd >= QTD_ALUNOS){
@@ -37,20 +37,14 @@ void cadAlunos(Aluno alunos[], int *qtd){
   printf("Turma: ");
   fgets(alunos[*qtd].turma, 20, stdin);
   alunos[*qtd].turma[strcspn(alunos[*qtd].turma,"\n")] = 0;
-  
 
+  for(int i = 0; i < QTD_NOTAS; i++){
+    alunos[*qtd].notas[i] = 0.0;
+  }
+  alunos[*qtd].media = 0.0;
+  strcpy(alunos[*qtd].situacao, "Sem notas.");
 
-
-
-
-
-
-
-
-
-
-
-
-  
+  (*qtd)++;
+  printf("Aluno cadastrado com sucesso.\n");
 }
 
