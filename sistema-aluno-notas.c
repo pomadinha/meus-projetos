@@ -20,7 +20,7 @@ void gerencNotas(Aluno alunos[], int qtd); //ainda falta
 void buscarAluno(Aluno alunos[], int qtd); //ainda falta
 
 void cadAlunos(Aluno alunos[], int *qtd){
-  for(*qtd >= QTD_ALUNOS){
+  if(*qtd >= QTD_ALUNOS){
     printf("ERRO! CAPACIDADE MÁXIMA DE ALUNOS ATINGIDA!\n")
       return;
   }
