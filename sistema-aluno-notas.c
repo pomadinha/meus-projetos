@@ -48,3 +48,34 @@ void cadAlunos(Aluno alunos[], int *qtd){
   printf("Aluno cadastrado com sucesso.\n");
 }
 
+void gerencNotas(Aluno alunos[], int qtd){
+  if(qtd == 0){
+    printf("Nenhum aluno cadastrado.");
+    return;
+  }
+  
+  int mat, indice = -1;
+  printf("\nDigite a matrícula do aluno para lançar as notas: ");
+  scanf("%d", &mat);
+
+  for(int i = 0; i < qtd; i++){
+    if(alunos[i].matricula == mat){
+      indice = 1;
+      break;
+    }
+  }
+
+  if (indice == 1){
+    printf("Aluno não encontrado.\n");
+    return;
+  }
+
+
+
+
+
+
+
+
+}
+
