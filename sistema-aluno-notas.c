@@ -17,8 +17,10 @@ typedef struct{
 
 void cadAlunos(Aluno alunos[], int *qtd);
 void gerencNotas(Aluno alunos[], int qtd); 
-void buscarAluno(Aluno alunos[], int qtd); //ainda falta
+void buscarAluno(Aluno alunos[], int qtd); 
 
+
+///////////////////////////////////////////////////////
 void cadAlunos(Aluno alunos[], int *qtd){
   if(*qtd >= QTD_ALUNOS){
     printf("ERRO! CAPACIDADE MÁXIMA DE ALUNOS ATINGIDA!\n")
@@ -47,7 +49,7 @@ void cadAlunos(Aluno alunos[], int *qtd){
   (*qtd)++;
   printf("Aluno cadastrado com sucesso.\n");
 }
-
+///////////////////////////////////////////////////////
 void gerencNotas(Aluno alunos[], int qtd){
   if(qtd == 0){
     printf("Nenhum aluno cadastrado.");
@@ -86,4 +88,44 @@ void gerencNotas(Aluno alunos[], int qtd){
   }
   printf("Notas atualizadas, a média é: %.2f(%s)\n", alunos[indice].media, alunos[indice].situacao);
 }
+///////////////////////////////////////////////////////
+void buscarAlunos(Aluno aluno[], int qtd){
+  if(qtd == 0){
+    printf("Nenhum aluno foi cadastrado.\n");
+  }
+  
+  int tipo;
+  printf("\nSelecione busca por matrícula(1) ou nome(2).");
+  scanf("%d", &tipo);
+  limparBuffer();
 
+  int encontrou == 0;
+
+  if(tipo == 0){
+    int mat;
+    printf("Digite a matrícula: ");
+    scanf("%d", &mat);
+    for(int i = 0; i < qtd; i++){
+      if(alunos[].matricula == mat){
+        printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n", alunos[i].matricula, alunos[i].nome, alunos[i].turma, alunos[i].media, alunos[i].situacao);
+        encontrou = 1;
+        break;
+      }
+    }
+  }else if(tipo == 2){
+    char nomeBusca[50];
+    printf("Digite o nome: ");
+    fgets(nomeBusca, 50, stdin);
+    nomeBusca[strcspn(nomeBusca, "\n")] = 0
+
+      for(int i = 0; i  < qtd; i++){
+        if(strstr(alunos[i].nome, nomeBusca) != NULL){
+          printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n", alunos[i].matricula, alunos[i].nome, alunos[i].turma, alunos[i].media, alunos[i].situacao);
+          encontrou = 1;
+          break;
+        }
+      }
+  }
+if(!encontrou) printf("Nenhum registro foi encontrado.\n");
+}
+///////////////////////////////////////////////////////
