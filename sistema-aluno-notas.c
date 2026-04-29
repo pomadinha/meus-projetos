@@ -16,7 +16,7 @@ typedef struct{
 }Aluno;
 
 void cadAlunos(Aluno alunos[], int *qtd);
-void gerencNotas(Aluno alunos[], int qtd); //ainda falta 
+void gerencNotas(Aluno alunos[], int qtd); 
 void buscarAluno(Aluno alunos[], int qtd); //ainda falta
 
 void cadAlunos(Aluno alunos[], int *qtd){
