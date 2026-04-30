@@ -3,22 +3,19 @@
 #include <locale.h>
 #include <ctype.h>
 
-// Variáveis Fixas
 #define QTD_NOTAS 3
 #define MAX_ALUNOS 50
 #define MEDIA_AP 7.0              
 
-// Struct
-typedef struct {
+typedef struct{
     char nome[50];
-    int matricula;                
+    int matricula;               
     char turma[10];
     float notas[QTD_NOTAS];
     float media;
     char situacao[20];
-} Aluno;
+}Aluno;
 
-// Protótipos das funções
 void cadastrarAluno(Aluno alunos[], int *qtd);
 void gerencNotas(Aluno alunos[], int qtd);
 void buscarAluno(Aluno alunos[], int qtd);
@@ -26,14 +23,14 @@ void relatorioGeral(Aluno alunos[], int qtd);
 void desempenhoTurma(Aluno alunos[], int qtd);
 void limparBuffer();
 
-int main() {
+int main(){
     setlocale(LC_ALL, "Portuguese");
 
     Aluno alunos[MAX_ALUNOS];
     int qtd_alunos = 0;
     int opcao;
 
-    do {
+    do{
         printf("------ SISTEMA ACADÊMICO ------\n");
         printf("1. Cadastrar Aluno\n");
         printf("2. Inserir/Atualizar Notas\n");
@@ -73,12 +70,12 @@ int main() {
     return 0;
 }
 
-void limparBuffer() {
+void limparBuffer(){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-void cadastrarAluno(Aluno alunos[], int *qtd) {
+void cadastrarAluno(Aluno alunos[], int *qtd){
     if (*qtd >= MAX_ALUNOS) {
         printf("ERRO! CAPACIDADE MÁXIMA DE ALUNOS ATINGIDA!\n");
         return;
@@ -99,11 +96,11 @@ void cadastrarAluno(Aluno alunos[], int *qtd) {
     alunos[*qtd].media = 0.0;
     strcpy(alunos[*qtd].situacao, "Sem notas");
 
-    (*qtd)++;                   
+    (*qtd)++;                  
 }
 
-void gerencNotas(Aluno alunos[], int qtd) {
-    if (qtd == 0) {
+void gerencNotas(Aluno alunos[], int qtd){
+    if (qtd == 0){
         printf("Nenhum aluno cadastrado.\n");
         return;
     }
@@ -113,37 +110,34 @@ void gerencNotas(Aluno alunos[], int qtd) {
     scanf("%d", &mat);
     limparBuffer();
 
-    for (int i = 0; i < qtd; i++) {
-        if (alunos[i].matricula == mat) {
+    for (int i = 0; i < qtd; i++){
+        if (alunos[i].matricula == mat){
             indice = i;               
             break;
         }
-    }
-
-    if (indice == -1) {
+    }if (indice == -1){
         printf("Aluno não encontrado.\n");
         return;
     }
 
     float soma = 0;
     printf("Lançamento de notas para: %s\n", alunos[indice].nome);
-    for (int i = 0; i < QTD_NOTAS; i++) {
+    for (int i = 0; i < QTD_NOTAS; i++){
         printf("Nota %d: ", i + 1);
         scanf("%f", &alunos[indice].notas[i]);
         soma += alunos[indice].notas[i];
     }
 
     alunos[indice].media = soma / QTD_NOTAS;
-    if (alunos[indice].media >= MEDIA_AP) {   
+    if(alunos[indice].media >= MEDIA_AP){   
         strcpy(alunos[indice].situacao, "Aprovado");
-    } else {
+    }else{
         strcpy(alunos[indice].situacao, "Reprovado");
     }
-
     printf("Notas atualizadas, a média é: %.2f (%s)\n", alunos[indice].media, alunos[indice].situacao);
 }
 
-void buscarAluno(Aluno alunos[], int qtd) {
+void buscarAluno(Aluno alunos[], int qtd){
     if (qtd == 0) {
         printf("Nenhum aluno foi cadastrado.\n");
         return;
@@ -156,49 +150,42 @@ void buscarAluno(Aluno alunos[], int qtd) {
 
     int encontrou = 0;                    
 
-    if (tipo == 1) {
+    if(tipo == 1) {
         int mat;
         printf("Digite a matrícula: ");
         scanf("%d", &mat);
-        for (int i = 0; i < qtd; i++) {
-            if (alunos[i].matricula == mat) {
-                printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n",
-                       alunos[i].matricula, alunos[i].nome, alunos[i].turma,
-                       alunos[i].media, alunos[i].situacao);
+        for(int i = 0; i < qtd; i++) {
+            if(alunos[i].matricula == mat) {
+                printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n", alunos[i].matricula, alunos[i].nome, alunos[i].turma, alunos[i].media, alunos[i].situacao);
                 encontrou = 1;
                 break;
             }
         }
-    } else if (tipo == 2) {
+    }else if (tipo == 2){
         char nomeBusca[50];
         printf("Digite o nome: ");
         fgets(nomeBusca, sizeof(nomeBusca), stdin);
         nomeBusca[strcspn(nomeBusca, "\n")] = '\0';
 
-        for (int i = 0; i < qtd; i++) {
-            if (strstr(alunos[i].nome, nomeBusca) != NULL) {
-                printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n",
-                       alunos[i].matricula, alunos[i].nome, alunos[i].turma,
-                       alunos[i].media, alunos[i].situacao);
+        for(int i = 0; i < qtd; i++) {
+            if(strstr(alunos[i].nome, nomeBusca) != NULL){
+                printf("\nMatrícula: %d | Nome: %s | Turma: %s | Média: %.2f | Status: %s\n", alunos[i].matricula, alunos[i].nome, alunos[i].turma, alunos[i].media, alunos[i].situacao);
                 encontrou = 1;
                 break;
             }
         }
-    } else {
+    } else{
         printf("Tipo de busca inválido.\n");
         return;
-    }
-
-    if (!encontrou)
+    }if(!encontrou)
         printf("Nenhum registro foi encontrado.\n");
 }
 
-void relatorioGeral(Aluno alunos[], int qtd) {
-    if (qtd == 0) {
+void relatorioGeral(Aluno alunos[], int qtd){
+    if(qtd == 0){
         printf("Nenhum aluno cadastrado.\n");
         return;
     }
-
     printf("\n--- RELATORIO GERAL DA TURMA ---\n");
     printf("%-10s | %-20s | %-10s | %-6s | %s\n", "Matricula", "Nome", "Turma", "Media", "Situacao");
     printf("----------------------------------------------------------------------\n");
@@ -209,8 +196,8 @@ void relatorioGeral(Aluno alunos[], int qtd) {
     }
 }
 
-void desempenhoTurma(Aluno alunos[], int qtd) {
-    if (qtd == 0) {
+void desempenhoTurma(Aluno alunos[], int qtd){
+    if(qtd == 0){
         printf("Nenhum aluno cadastrado.\n");
         return;
     }
@@ -220,13 +207,13 @@ void desempenhoTurma(Aluno alunos[], int qtd) {
     float somaTurma = 0;
     int aprovados = 0, reprovados = 0;
 
-    for (int i = 0; i < qtd; i++) {
-        if (alunos[i].media > maior) maior = alunos[i].media;
-        if (alunos[i].media < menor) menor = alunos[i].media;
+    for(int i = 0; i < qtd; i++){
+        if(alunos[i].media > maior) maior = alunos[i].media;
+        if(alunos[i].media < menor) menor = alunos[i].media;
         somaTurma += alunos[i].media;
 
-        if (strcmp(alunos[i].situacao, "Aprovado") == 0) aprovados++;
-        if (strcmp(alunos[i].situacao, "Reprovado") == 0) reprovados++;
+        if(strcmp(alunos[i].situacao, "Aprovado") == 0) aprovados++;
+        if(strcmp(alunos[i].situacao, "Reprovado") == 0) reprovados++;
     }
 
     printf("\n--- ESTATISTICAS GERAIS ---\n");
