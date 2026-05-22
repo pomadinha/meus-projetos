@@ -23,12 +23,10 @@ void cadastroProduto(){
 	printf("\n--- CADASTRO DE PRODUTO ---\n");
 	
 	p.codigo = total_produtos + 1;
-	
 	while (getchar() != '\n'); 
 	
 	printf("Nome do produto: ");
 	scanf("%[^\n]", p.nome); 
-	
 	printf("Quantidade: ");
 	scanf("%d", &p.quantidade);
 	printf("Preço: ");
@@ -104,7 +102,7 @@ int main(){
 		printf("Escolha uma opcao acima: ");
 		scanf("%d", &opcao);
 		
-		switch (opcao){
+		switch(opcao){
 			case 1:
 				cadastroProduto();
 				break;
@@ -121,6 +119,5 @@ int main(){
 				printf("OPCAO INVALIDA\n\n");
 		}
 	}while(opcao != 4);
-	
 	return 0;
 }
