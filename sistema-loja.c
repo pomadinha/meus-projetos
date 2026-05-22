@@ -29,6 +29,8 @@ void cadastroProduto(){
 	scanf("%[^\n]", p.nome); 
 	printf("Quantidade: ");
 	scanf("%d", &p.quantidade);
+	printf("Codigo: ");
+	scanf("%d", &p.codigo);
 	printf("Preço: ");
 	scanf("%f", &p.preco);
 	
